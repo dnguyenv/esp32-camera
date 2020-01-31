@@ -163,10 +163,11 @@ Now open the serial monitor window `Tools >> Serials Monitor` and press the Rese
 
 You will see something like this that tells you the Video server is ready
 
-![Web](images/web-cam-server.png)
+![Web](images/monitor.png)
 
 Now you can open a browser on you computer (which is on the same network with the ESP32-CAM board) to access the link, in this case, `http://192.168.1.252/`and start streaming the video
 
 The ESP32-CAM board has the built-in Face detection/recognition capability which is a good foundation to start building your solution. 
+
 
 
