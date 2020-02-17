@@ -218,7 +218,11 @@ void loop()
 ```
 
 `YOUR-SERVICE-DOMAIN`: The Watson Visual Recognition service domain (eg: `https://api.us-south.visual-recognition.watson.cloud.ibm.com`) based on where you provisioned the service
-`BASE64-ENCODED-OF-YOUR-APIKEY`: Base64 encoded of this: `apikey:[YOUR-API-KEY]`
+`BASE64-ENCODED-OF-YOUR-APIKEY`: Base64 encoded of this: `apikey:[YOUR-API-KEY]`. You can google for a base64 online encoder to find out what's your `BASE64-ENCODED-OF-YOUR-APIKEY` is. Or if you're running Mac, use this command to figure it out:
+
+```bash
+echo -n "apikey:PUT-YOUR-API-KEY-HERE" | base64
+```
 
 ## Run the code
 
