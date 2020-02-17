@@ -1,5 +1,5 @@
 *Quick links :*
-[Home](/GettingStarted.md) - [Watson Visual](/WatsonVisual.md)
+[Home](/README.md) - [Watson Visual](/WatsonVisual.md)
 # Programming ESP32 Camera 
 
 In this tutorial you will learn how to capture a picture from your ESP32-CAM and use the free IBM Watson Visual Recognition service to classify the objects on the picture.
@@ -301,7 +301,6 @@ Now run the code as usual, you will see something like this in `Serial monitor`
 ```
 
 Now it's your job to take this code and use it further in your solution. 
-
 
 
 
