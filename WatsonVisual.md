@@ -39,14 +39,11 @@ You can plug this piece of code into your solution to make use of Watson service
 const char* ssid = "[Your-Wifi-SSID]";
 const char* password = "[Your-Wifi-pass]";
 
-const char *post_url = "https://[YOUR-SERVICE-DOMAIN/v3/classify?version=2018-03-19]"; // Location to send POSTed data
+// Watson Visual Recognition service endpoint. This use the domain part in the service's url
+const char *post_url = "https://[YOUR-SERVICE-DOMAIN/v3/classify?version=2018-03-19]"; 
 
 bool internet_connected = false;
 
-long current_millis;
-long last_capture_millis = 0;
-
-// CAMERA_MODEL_AI_THINKER
 #define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
 #define XCLK_GPIO_NUM      0
@@ -68,7 +65,7 @@ void setup()
 {
   Serial.begin(115200);
 
-  if (init_wifi()) { // Connected to WiFi
+  if (init_wifi()) { 
     internet_connected = true;
     Serial.println("Internet connected");
   }
@@ -94,7 +91,7 @@ void setup()
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
-  //init with high specs to pre-allocate larger buffers
+
   if (psramFound()) {
     config.frame_size = FRAMESIZE_UXGA;
     config.jpeg_quality = 10;
@@ -127,6 +124,9 @@ bool init_wifi()
   return true;
 }
 
+/*
+Handling the http events. Take close look at HTTP_EVENT_ON_DATA case
+*/
 
 esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 {
@@ -148,7 +148,7 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
       Serial.println();
       Serial.printf("HTTP_EVENT_ON_DATA, len=%d", evt->data_len);
       if (!esp_http_client_is_chunked_response(evt->client)) {
-        // Write out data
+        // This is now only printing data to Serial monitor. You can pick it up and do further prcessing at this point.
         printf("%.*s", evt->data_len, (char*)evt->data);
       }
       break;
@@ -163,6 +163,10 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
   return ESP_OK;
 }
 
+/*
+Capture a picture and send it to Watson Visual Recognition service for classifying
+You need the apikey of the service to generate a base-64 encoded string to be used here
+*/
 static esp_err_t take_and_send_photo_to_watson()
 {
   Serial.println("Taking picture...");
@@ -201,6 +205,9 @@ static esp_err_t take_and_send_photo_to_watson()
   esp_camera_fb_return(fb);
 }
 
+/*
+Just a simple silly loop to take a picture and send it to Watson every 5 seconds
+*/
 void loop()
 {
   if (true) { 
