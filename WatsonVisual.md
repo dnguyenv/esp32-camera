@@ -40,7 +40,7 @@ const char* ssid = "[Your-Wifi-SSID]";
 const char* password = "[Your-Wifi-pass]";
 
 // Watson Visual Recognition service endpoint. This use the domain part in the service's url
-const char *post_url = "https://[YOUR-SERVICE-DOMAIN/v3/classify?version=2018-03-19]"; 
+const char *post_url = "https://[YOUR-SERVICE-DOMAIN]/v3/classify?version=2018-03-19"; 
 
 bool internet_connected = false;
 
